@@ -4,15 +4,22 @@
 
 package frc.robot.subsystems.wrist;
 
+import static edu.wpi.first.units.Units.Volts;
+import static edu.wpi.first.units.Units.Second;
+import static edu.wpi.first.units.Units.Seconds;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
-import frc.robot.subsystems.wrist.WristIOInputsAutoLogged;
 import org.littletonrobotics.junction.Logger;
 
 /** Add your docs here. */
-public class Wrist {
+public class Wrist extends SubsystemBase{
   private final WristIO io;
   private final WristIOInputsAutoLogged inputs;
+
+  private final SysIdRoutine wristSysId;
 
   private final Alert wristDisconnectedAlert;
 
@@ -20,12 +27,25 @@ public class Wrist {
     this.io = io;
     inputs = new WristIOInputsAutoLogged();
 
+    
+    wristSysId = new SysIdRoutine(
+      new SysIdRoutine.Config(
+          Volts.of(1).per(Second),
+          Volts.of(6),
+          Seconds.of(30),
+          (state) -> Logger.recordOutput("Wrist", state.toString())
+        ),
+      new SysIdRoutine.Mechanism(
+        (volts) -> io.setVoltage(volts.in(Volts)), 
+        null, 
+        this));
+
     wristDisconnectedAlert = new Alert("Wrist motor is disconnected.", AlertType.kError);
   }
 
   public void periodic() {
     io.updateInputs(inputs);
-    Logger.processInputs("Intake/Wrist", inputs);
+    Logger.processInputs("Wrist", inputs);
 
     wristDisconnectedAlert.set(!inputs.wristConnected);
   }

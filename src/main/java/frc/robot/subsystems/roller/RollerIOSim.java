@@ -9,12 +9,12 @@ import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static frc.robot.subsystems.roller.RollerConstants.rollerGearRatio;
 import static frc.robot.subsystems.roller.RollerConstants.rollerMotorMOI;
 
-import org.littletonrobotics.junction.LoggedRobot;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.system.plant.LinearSystemId;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
+import org.littletonrobotics.junction.LoggedRobot;
 
 /** Add your docs here. */
 public class RollerIOSim implements RollerIO {
@@ -22,21 +22,18 @@ public class RollerIOSim implements RollerIO {
   private final DCMotorSim rollerMotorSim;
 
   public RollerIOSim() {
-    rollerDCMotor =
-      new DCMotor(
-        12.0,
-        7.09,
-        366.0,
-        2.0,
-        RPM.of(6000).in(RadiansPerSecond),
-        1
-      );
+    rollerDCMotor = new DCMotor(
+      12.0,
+      7.09,
+      366.0,
+      2.0,
+      RPM.of(6000).in(RadiansPerSecond),
+      1);
 
     rollerMotorSim =
       new DCMotorSim(
         LinearSystemId.createDCMotorSystem(rollerDCMotor, rollerMotorMOI, rollerGearRatio),
-        rollerDCMotor
-      );
+        rollerDCMotor);
   }
 
   @Override

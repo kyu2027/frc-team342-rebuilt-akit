@@ -10,6 +10,6 @@ public class RollerConstants {
 
   public static final int rollerCurrentLimit = 80; // Amps
 
-  public static final double rollerMotorMOI = 0.035; //Kg * m^2
+  public static final double rollerMotorMOI = 0.035; // Kg * m^2
   public static final double rollerGearRatio = 1.0;
 }

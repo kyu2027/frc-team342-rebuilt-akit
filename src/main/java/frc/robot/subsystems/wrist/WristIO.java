@@ -24,11 +24,11 @@ public interface WristIO {
 
   public default void updateInputs(WristIOInputs inputs) {}
 
+  /** Sets the voltage of the wrist motor */
+  public default void setVoltage(double voltage) {}
+
   /** Toggle manual mode for the wrist */
   public default void toggleManual() {}
-
-  /** Move wrist at set speed */
-  public default void moveWrist(double speed) {}
 
   /** Move wrist to set position */
   public default void wristToPosition(double goal, XboxController controller) {}

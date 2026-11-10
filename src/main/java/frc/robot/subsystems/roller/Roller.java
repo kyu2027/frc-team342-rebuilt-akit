@@ -4,13 +4,13 @@
 
 package frc.robot.subsystems.roller;
 
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
-import frc.robot.subsystems.roller.RollerIOInputsAutoLogged;
 import org.littletonrobotics.junction.Logger;
 
 /** Add your docs here. */
-public class Roller {
+public class Roller extends SubsystemBase{
   private final RollerIO io;
   private final RollerIOInputsAutoLogged inputs;
 
@@ -25,7 +25,7 @@ public class Roller {
 
   public void periodic() {
     io.updateInputs(inputs);
-    Logger.processInputs("Intake/Roller", inputs);
+    Logger.processInputs("Roller", inputs);
 
     rollerDisconnectedAlert.set(!inputs.rollerConnected);
   }
