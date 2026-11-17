@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems.wrist;
 
-import edu.wpi.first.wpilibj.XboxController;
 import org.littletonrobotics.junction.AutoLog;
 
 /** Add your docs here. */
@@ -12,7 +11,6 @@ public interface WristIO {
   @AutoLog
   public static class WristIOInputs {
     public boolean wristConnected = false;
-    public boolean wristManual = false;
 
     public double wristPosition = 0.0;
     public double wristGoal = 0.0;
@@ -27,14 +25,8 @@ public interface WristIO {
   /** Sets the voltage of the wrist motor */
   public default void setVoltage(double voltage) {}
 
-  /** Toggle manual mode for the wrist */
-  public default void toggleManual() {}
-
   /** Move wrist to set position */
-  public default void wristToPosition(double goal, XboxController controller) {}
-
-  /** Move wrist with joystick */
-  public default void wristWithJoystick(XboxController controller) {}
+  public default void wristToPosition(double goal) {}
 
   /** Stop the wrist */
   public default void stopWrist() {}

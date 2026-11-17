@@ -4,13 +4,13 @@
 
 package frc.robot.subsystems.roller;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.littletonrobotics.junction.Logger;
 
 /** Add your docs here. */
-public class Roller extends SubsystemBase{
+public class Roller extends SubsystemBase {
   private final RollerIO io;
   private final RollerIOInputsAutoLogged inputs;
 

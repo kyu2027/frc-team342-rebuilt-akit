@@ -22,26 +22,20 @@ public class RollerIOSim implements RollerIO {
   private final DCMotorSim rollerMotorSim;
 
   public RollerIOSim() {
-    rollerDCMotor = new DCMotor(
-      12.0,
-      7.09,
-      366.0,
-      2.0,
-      RPM.of(6000).in(RadiansPerSecond),
-      1);
+    rollerDCMotor = new DCMotor(12.0, 7.09, 366.0, 2.0, RPM.of(6000).in(RadiansPerSecond), 1);
 
     rollerMotorSim =
-      new DCMotorSim(
-        LinearSystemId.createDCMotorSystem(rollerDCMotor, rollerMotorMOI, rollerGearRatio),
-        rollerDCMotor);
+        new DCMotorSim(
+            LinearSystemId.createDCMotorSystem(rollerDCMotor, rollerMotorMOI, rollerGearRatio),
+            rollerDCMotor);
   }
 
   @Override
   public void updateInputs(RollerIOInputs inputs) {
-    if(DriverStation.isDisabled()) {
+    if (DriverStation.isDisabled()) {
       stopRoller();
-    }else{
-      setVoltage(inputs.rollerAppliedVoltage);
+    } else {
+      setVoltage(rollerMotorSim.getInputVoltage());
     }
 
     inputs.rollerConnected = true;

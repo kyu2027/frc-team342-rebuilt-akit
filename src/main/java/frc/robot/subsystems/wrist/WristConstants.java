@@ -24,7 +24,8 @@ public class WristConstants {
   public static final double[] wristProfiledPIDValues = {0.25, 0.0, 0.2}; // PID
   public static final double[] wristFeedforwardValues = {0.0, 0.0, 0.0, 0.0}; // SGVA
 
-  public static final Constraints wristProfiledPIDConstraints = new Constraints(Math.PI * 2, Math.PI * 4);
+  public static final Constraints wristProfiledPIDConstraints =
+      new Constraints(Math.PI * 2, Math.PI * 4);
 
   public static final int wristCurrentLimit = 30; // Amps
 }
